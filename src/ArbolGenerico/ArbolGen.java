@@ -91,6 +91,16 @@ public class ArbolGen {
     }
 
     private Object padreAux(NodoGen nodo, Object buscado) {
+        String padre = null;
+        if(nodo == null){
+            
+        }
         
-    }
-}
+    }   
+
+    
+
+    
+
+
+}               

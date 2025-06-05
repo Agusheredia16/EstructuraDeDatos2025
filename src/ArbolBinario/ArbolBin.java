@@ -12,7 +12,7 @@ public class ArbolBin {
     Inserta elemNuevo como hijo del primer nodo encontrado en preorden igual a
     elemPadre, como HI o HD segun lo indique el parametro
      */
-    public boolean insertar(Object elemNuevo, Object elemPadre, char lugar) {
+     public boolean insertar(Object elemNuevo, Object elemPadre, char lugar) {
         boolean exito = true;
 
         if (raiz == null) {
