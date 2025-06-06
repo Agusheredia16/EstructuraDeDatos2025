@@ -91,16 +91,68 @@ public class ArbolGen {
     }
 
     private Object padreAux(NodoGen nodo, Object buscado) {
-        String padre = null;
+        Object padre;
         if(nodo == null){
-            
+            padre = null;
+        } else {
+            if (esPadre(nodo.getHijoIzquierdo(), buscado)) {
+                padre = nodo.getElemento();
+            } else {
+                padre = padreAux(nodo.getHijoIzquierdo(), buscado);
+            }
+            if (padre == null) {
+                padre = padreAux(nodo.getHermanoDerecho(), buscado);
+            }
         }
-        
-    }   
+        return padre;
+    }
 
-    
+    private boolean esPadre(NodoGen nodo, Object buscado){
+        boolean rta = false;
+        if (nodo != null) {
+            if (nodo.getElemento().equals(buscado)) {
+                rta = true;
+            } else {
+                rta = esPadre(nodo.getHermanoDerecho(), buscado);
+            }
+        }
+        return rta;
+    }
 
+    public int altura(){
+        int altura = - 1;
+        if (!esVacio()) {
+            NodoGen aux = raiz;
+            altura = alturaAux(aux);
+        }
+        return altura;
+    }
+
+    private int alturaAux(NodoGen nodo){
+        int altura;
+        if (nodo == null) {
+            altura = - 1;
+        } else {
+            altura = alturaHijos(nodo.getHijoIzquierdo()) + 1;
+        }
+        return altura;
+    }
     
+    private int alturaHijos(NodoGen nodo){
+        int alt = - 1;
+        if (nodo == null) {
+            alt = - 1
+        } else {
+            while (nodo != null) {
+                int aux = alturaAux(nodo);
+                if (aux > alt) {
+                    alt = aux;
+                }
+                nodo = nodo.getHermanoDerecho();
+            }
+        }
+        return alt;
+    }
 
 
 }               
